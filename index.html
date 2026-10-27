@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anime World</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#100e1b;color:white;font-family:Arial,sans-serif}
+header{background:#211637;padding:25px 15px;text-align:center}
+h1{color:#d9a7ff;margin:0 0 10px}
+header p{margin:0;color:#ddd}
+nav{text-align:center;padding:15px}
+button{background:#372653;color:white;border:1px solid #8c5ac4;padding:10px 14px;margin:4px;border-radius:20px;cursor:pointer}
+button:hover,button.active{background:#a855f7}
+input{display:block;width:90%;max-width:450px;margin:10px auto;padding:13px;border-radius:10px;border:1px solid #8c5ac4;background:#211637;color:white}
+main{padding:15px}
+h2{color:#d9a7ff}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:15px}
+.card{background:#211637;border-radius:12px;overflow:hidden;text-align:center;padding-bottom:12px}
+.poster{height:160px;background:linear-gradient(135deg,#6d28d9,#ec4899);display:flex;align-items:center;justify-content:center;font-size:45px}
+.card h3{margin:12px 5px 5px}
+.card p{color:#ccc;font-size:13px}
+footer{text-align:center;padding:25px;color:#bbb}
+</style>
+</head>
+<body>
+<header>
+<h1>🌸 ANIME WORLD 🌸</h1>
+<p>Ton univers anime commence ici !</p>
+</header>
+<input id="search" type="search" placeholder="🔍 Rechercher un anime...">
+<nav>
+<button class="active" onclick="filterAnime('Tous',this)">Tous</button>
+<button onclick="filterAnime('Action',this)">Action</button>
+<button onclick="filterAnime('Aventure',this)">Aventure</button>
+<button onclick="filterAnime('Romance',this)">Romance</button>
+<button onclick="filterAnime('Fantaisie',this)">Fantaisie</button>
+</nav>
+<main>
+<h2>✨ Découvre ton univers</h2>
+<div class="gallery" id="gallery">
+<div class="card" data-category="Action"><div class="poster">⚔️</div><h3>Ninja Legends</h3><p>Action • Combat</p></div>
+<div class="card" data-category="Aventure"><div class="poster">🌊</div><h3>Ocean Quest</h3><p>Aventure • Voyage</p></div>
+<div class="card" data-category="Romance"><div class="poster">💖</div><h3>Love Story</h3><p>Romance • Amitié</p></div>
+<div class="card" data-category="Fantaisie"><div class="poster">🪄</div><h3>Magic World</h3><p>Fantaisie • Magie</p></div>
+<div class="card" data-category="Action"><div class="poster">🔥</div><h3>Power Heroes</h3><p>Action • Héros</p></div>
+<div class="card" data-category="Aventure"><div class="poster">🌟</div><h3>Star Adventure</h3><p>Aventure • Mystère</p></div>
+</div>
+</main>
+<footer>Anime World © 2026 • Fait avec passion 💜</footer>
+<script>
+function filterAnime(category,button){
+document.querySelectorAll('.card').forEach(card=>{
+card.style.display=(category==='Tous'||card.dataset.category===category)?'block':'none';
+});
+document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+button.classList.add('active');
+}
+document.getElementById('search').addEventListener('input',function(){
+let value=this.value.toLowerCase();
+document.querySelectorAll('.card').forEach(card=>{
+card.style.display=card.innerText.toLowerCase().includes(value)?'block':'none';
+});
+});
+</script>
+</body>
+</html>
